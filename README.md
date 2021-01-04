@@ -6,8 +6,7 @@ Apache gonna be installed on a random port
 
 ## Installation
 
-WGET SHOULD DO IT
-PLEASE NOTICE YOU NEED TO UPDATE AND UPGRADE BEFORE YOU CAN INSTALL!
+### PLEASE NOTICE YOU NEED TO UPDATE AND UPGRADE BEFORE YOU CAN INSTALL!
 
 ```bash
 apt-get update && apt-get upgrade OR yum update && yum upgrade
