@@ -1,4 +1,5 @@
 #!/bin/sh
+
  usage()  
  {  
  echo "Usage: $0 ip/host"  
