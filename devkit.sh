@@ -1,5 +1,4 @@
 #!/bin/sh
-
  usage()  
  {  
  echo "Usage: $0 ip/host"  
@@ -12,7 +11,7 @@ else
     SYSTEM=$(lsb_release -sd)
 	PORTAPACHE=$(shuf -i 1337-1555 -n 1)
 	apache1='/etc/apache2/sites-available/000-default.conf'
-	apache2='/etc/httpd/ports.conf'
+	apache2='/etc/apache2/ports.conf'
 	centosapache1='/etc/httpd/sites-available/000-default.conf'
 	centosapache2='/etc/httpd/conf/httpd.conf'
 	apacheindex='/var/www/html/index.php'
