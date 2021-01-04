@@ -2,18 +2,20 @@
 
 Ubuntu 20.04 and Centos 8 Successfully tested!
 Linux DevKit Webserver Installer install Nginx as Reverse Proxy for Apache with PHP included.
+Apache gonna be installed on a random port
 
 ## Installation
 
 WGET SHOULD DO IT
 
 ```bash
-wget -c https://github.com/Timmo1337/DevKit-Nginx-Apache-Webserver-Installer-Ubuntu20.04-Centos8/blob/main/devkit-305x336.png?raw=true -O devkit.sh
+wget -c https://raw.githubusercontent.com/Timmo1337/DevKit-Nginx-Apache-Webserver-Installer-Ubuntu20.04-Centos8/main/devkit.sh -O devkit.sh
 ```
 
 ## Usage
 
-``bash
+
+```bash
 sh devkit.sh IP Adress/Domain
 ```
 
