@@ -65,7 +65,7 @@ printf "<VirtualHost *:$PORTAPACHE>
 fi
 touch $apache2
 if [ -f $apache2 ]; then 
-	rm $apache2 
+	rm $apache2
 	printf "# If you just change the port or add more ports here, you will likely also
 # have to change the VirtualHost statement in
 # /etc/apache2/sites-enabled/000-default.conf
