@@ -10,7 +10,7 @@ WGET SHOULD DO IT
 
 ```bash
 apt-get update && apt-get upgrade OR yum update && yum upgrade
-wget -c https://raw.githubusercontent.com/Timmo1337/DevKit-Nginx-Apache-Webserver-Installer-Ubuntu20.04-Centos8/main/devkit.sh -O devkit.sh
+wget -c https://raw.githubusercontent.com/Timmo1337/DevKit-Nginx-Apache-Webserver-Installer-Ubuntu20.04-Centos8/main/devkit.sh; chmod 777 devkit.sh;
 ```
 
 ## Usage
