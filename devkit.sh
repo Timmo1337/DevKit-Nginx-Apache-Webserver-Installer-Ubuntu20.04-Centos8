@@ -18,6 +18,7 @@ else
 	htmldir='/var/www/html/'
 	nginx1='/etc/nginx/nginx.conf'
 	nginx2='/etc/nginx/sites-available/reverse.conf'
+	testseq='Ubuntu'
 fi
 COLUMNS=$(tput cols) 
 title="DEVKIT WEBSERVER INSTALLATION" 
@@ -25,14 +26,13 @@ printf "%*s\n" $(((${#title}+$COLUMNS)/2)) "### DEVKIT WEBSERVER INSTALLATION - 
 printf "%*s\n" $(((${#title}+$COLUMNS)/2)) "### INSTALLING ON '$ipinput' ###"
 printf "%*s\n" $(((${#title}+$COLUMNS)/2)) "### INSTALLING NOW APACHE ON '$PORTAPACHE' ###"
 printf "%*s\n" $(((${#title}+$COLUMNS)/2)) "### $SYSTEM ###"
-if [[ $SYSTEM =~ .*ubuntu.* ]] 
-then
-echo 'UBUNTU INSTALLS'
+case $SYSTEM in
+    *$testseq*)
 apt-get --yes --force-yes install apache2
 apt-get --yes --force-yes install php php-mysql libapache2-mod-php
 apt-get --yes --force-yes install nginx
-  else
-  echo 'CENTOS INSTALLS'
+;;
+    *)  
 yum -y install httpd
 dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
@@ -44,10 +44,10 @@ dnf -y install php-{cli,fpm,mysqlnd,zip,devel,gd,mbstring,curl,xml,pear,bcmath,j
 yum -y install nginx
 firewall-cmd --zone=public --add-port=$PORTAPACHE/tcp --permanent
 firewall-cmd --zone=public --add-port=$PORTAPACHE/udp --permanent
-fi
+esac
 #sed -i -e "s/\(Listen \).*/\1$PORTAPACHE/" /etc/apache2/ports.conf
-if [[ $SYSTEM =~ .*ubuntu.* ]]
-then 
+case $SYSTEM in
+    *$testseq*)
 touch $apache1
 if [ -f $apache1 ]; then
    rm $apache1
@@ -81,7 +81,8 @@ Listen $PORTAPACHE
 
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet" > $apache2
 fi
-else
+;;
+    *)     
 touch $centosapache2
 if [ -f $centosapache2 ]; then 
 	rm $centosapache2 
@@ -157,7 +158,7 @@ IncludeOptional conf.d/*.conf
 apachectl configtest
 systemctl restart httpd
 fi
-fi
+esac
 if [ -d $htmldir ]; then 
 	rm -Rf $htmldir
 	mkdir -p $htmldir
@@ -165,8 +166,8 @@ if [ -d $htmldir ]; then
 cd /var/www/html/
 wget -c https://github.com/Timmo1337/DevKit-Nginx-Apache-Webserver-Installer-Ubuntu20.04-Centos8/blob/main/devkit-305x336.png?raw=true -O devkit-logo.png
 printf "<center><img src='devkit-logo.png' alt='DevKit Webserver Installation Finished'><br/><h2>DevKit Webserver</h2><strong>Installation Complete</strong><br/>Frontend: Nginx on Port 80 | Backend: Apache on Port $PORTAPACHE<?php echo phpinfo(); ?>" > index.php
-if [[ $SYSTEM =~ .*ubuntu.* ]]
-then 
+case $SYSTEM in
+    *$testseq*)
 touch $nginx1
 if [ -f $nginx1 ]; then
 rm $nginx1 
@@ -294,7 +295,8 @@ printf "server {
 }" > $nginx2
 fi
 ln -s /etc/nginx/sites-available/reverse.conf /etc/nginx/sites-enabled/
-else
+;;
+    *)   
 touch $nginx1
 if [ -f $nginx1 ]; then
 rm $nginx1 
@@ -418,7 +420,7 @@ server {
 }
 " > $nginx1
 fi
-fi
+esac
 nginx -t
 systemctl restart nginx
 curl -I $ipinput
