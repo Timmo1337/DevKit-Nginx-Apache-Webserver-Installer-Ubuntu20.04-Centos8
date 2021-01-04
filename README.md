@@ -1,12 +1,13 @@
 # DevKit Webserver Installer
 
-Ubuntu 20.04 and Centos 8 Successfully tested!
+##Ubuntu 20.04 and Centos 8 Successfully tested!
 Linux DevKit Webserver Installer install Nginx as Reverse Proxy for Apache with PHP included.
 Apache gonna be installed on a random port
 
 ## Installation
 
 WGET SHOULD DO IT
+PLEASE NOTICE YOU NEED TO UPDATE AND UPGRADE BEFORE YOU CAN INSTALL!
 
 ```bash
 apt-get update && apt-get upgrade OR yum update && yum upgrade
