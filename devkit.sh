@@ -1,4 +1,4 @@
- #!/bin/sh
+#!/bin/sh
  usage()  
  {  
  echo "Usage: $0 ip/host"  
@@ -19,6 +19,7 @@ else
 	nginx1='/etc/nginx/nginx.conf'
 	nginx2='/etc/nginx/sites-available/reverse.conf'
 	testseq='Ubuntu'
+	testseq2='Debian'
 fi
 COLUMNS=$(tput cols) 
 title="DEVKIT WEBSERVER INSTALLATION" 
@@ -27,7 +28,7 @@ printf "%*s\n" $(((${#title}+$COLUMNS)/2)) "### INSTALLING ON '$ipinput' ###"
 printf "%*s\n" $(((${#title}+$COLUMNS)/2)) "### INSTALLING NOW APACHE ON '$PORTAPACHE' ###"
 printf "%*s\n" $(((${#title}+$COLUMNS)/2)) "### $SYSTEM ###"
 case $SYSTEM in
-    *$testseq*)
+    *$testseq*|*$testseq2*)
 apt-get --yes --force-yes install apache2
 apt-get --yes --force-yes install php php-mysql libapache2-mod-php
 apt-get --yes --force-yes install nginx
@@ -47,7 +48,7 @@ firewall-cmd --zone=public --add-port=$PORTAPACHE/udp --permanent
 esac
 #sed -i -e "s/\(Listen \).*/\1$PORTAPACHE/" /etc/apache2/ports.conf
 case $SYSTEM in
-    *$testseq*)
+    *$testseq*|*$testseq2*)
 touch $apache1
 if [ -f $apache1 ]; then
    rm $apache1
@@ -167,7 +168,7 @@ cd /var/www/html/
 wget -c https://github.com/Timmo1337/DevKit-Nginx-Apache-Webserver-Installer-Ubuntu20.04-Centos8/blob/main/devkit-305x336.png?raw=true -O devkit-logo.png
 printf "<center><img src='devkit-logo.png' alt='DevKit Webserver Installation Finished'><br/><h2>DevKit Webserver</h2><strong>Installation Complete</strong><br/>Frontend: Nginx on Port 80 | Backend: Apache on Port $PORTAPACHE<?php echo phpinfo(); ?>" > index.php
 case $SYSTEM in
-    *$testseq*)
+    *$testseq*|*$testseq2*)
 touch $nginx1
 if [ -f $nginx1 ]; then
 rm $nginx1 
