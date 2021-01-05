@@ -10,7 +10,7 @@ Apache gonna be installed on a random port
 
 ```bash
 apt-get update && apt-get upgrade OR yum update && yum upgrade
-wget -O devkit.sh - https://raw.githubusercontent.com/Timmo1337/DevKit-Nginx-Apache-Webserver-Installer-Ubuntu20.04-Centos8/main/devkit.sh | bash
+wget -O devkit.sh - https://raw.githubusercontent.com/Timmo1337/DevKit-Webserver-Install---Shell-Script---Nginx-Reverse-Proxy-for-Apache2/main/devkit.sh | bash
 ```
 
 ## Usage
